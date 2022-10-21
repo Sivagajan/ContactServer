@@ -11,6 +11,8 @@ export const getAll = () => {
     })
 }
 
+
+
 export const addContact = (req, res) => {
 
     const contact = {

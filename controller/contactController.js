@@ -34,9 +34,12 @@ export const changeContact = (req, res) => {
     
 }
 
-export const deleteContact = (_id) => {
+export const deleteContact = (req,res) => {
+
+    const _id = req.body._id
+
     connectDb()
-        .then(db.collection('kontakte').deleteOne({id_: new ObjectId (_id)}))
-        .then(result => resolve(result))
-        .catch(err => reject(err))
+        .then(db => db.collection('kontakte').deleteOne({_id: new ObjectId (_id)}))
+        .then(result => res.status(200).send(result))
+        .catch(err => res.status(500).send(err))
 }
